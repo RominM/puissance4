@@ -6,9 +6,12 @@ import './index.css'
 import { GameMachine, GameModel } from './machine/GameMachine'
 
 
-const machine = interpret(GameMachine)
-console.log(machine.send(GameModel.events.join('1','1')));
-console.log(machine.send(GameModel.events.join('1','1')).changed);
+const machine = interpret(GameMachine).start();
+
+const player1 = machine.send(GameModel.events.join('1','1')).changed;
+const player2 = machine.send(GameModel.events.join('2','1')).changed;
+console.log('player1 : ',player1);
+console.log('player2 : ',player2);
 
 
 
